@@ -1,9 +1,10 @@
 MerchantTransactions::Application.routes.draw do
+  get "reports/merchant_transactions_report"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'reports#merchant_transactions_report'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
