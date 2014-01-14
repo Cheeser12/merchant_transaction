@@ -1,1 +1,9 @@
 %h1=@table.name
+%table
+  %tr
+    -@table.headers.each do |h|
+      %td=h
+  -@table.rows.each do |r|
+    %tr
+      -r.each do |c|
+        %td=c
