@@ -11,10 +11,17 @@ describe TablesController do
   end
 
   describe "GET #show" do
+    let(:table) { create :table }
+
     it "gets the table" do
-      table = create :table
       get :show, id: table.id
       assigns[:table].should eq table
+    end
+    
+    it "can export to CSV" do
+      get :show, id: table.id, format: "csv"
+      response.status.should eq 200
+      response.body.should eq Table.to_csv(table)
     end
   end
 end
