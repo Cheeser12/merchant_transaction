@@ -6,7 +6,7 @@ describe ReportsController do
       create :table
       create :table, name: "test2"
       get :index  
-      assigns[:table_ids].should eq Table.all.ids
+      assigns[:tables].should eq Table.all
     end
   end
 

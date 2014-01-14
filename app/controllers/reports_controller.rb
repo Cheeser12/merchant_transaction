@@ -2,7 +2,7 @@ require 'csv'
 
 class ReportsController < ApplicationController
   def index
-    @table_ids = Table.all.ids
+    @tables = Table.all
   end
 
   def show
