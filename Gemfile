@@ -15,6 +15,8 @@ gem 'haml-rails'
 # Use rspec for testing
 group :development, :test do
   gem 'rspec-rails'
+  gem 'guard-rails'
+  gem 'factory_girl_rails'
 end
 
 # Use Uglifier as compressor for JavaScript assets
