@@ -21,4 +21,11 @@ class TablesController < ApplicationController
       redirect_to root_url, alert: "Failed to import #{params[:file].original_filename}"
     end
   end
+
+  def destroy
+    @table = Table.find(params[:id])
+    @table.destroy
+
+    redirect_to root_path
+  end
 end
