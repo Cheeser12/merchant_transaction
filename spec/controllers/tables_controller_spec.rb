@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReportsController do
+describe TablesController do
   describe "GET #index" do
     it "lists all the tables" do
       create :table
