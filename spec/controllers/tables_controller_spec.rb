@@ -20,8 +20,27 @@ describe TablesController do
     
     it "can export to CSV" do
       get :show, id: table.id, format: "csv"
-      response.status.should eq 200
+      response.should be_success
       response.body.should eq Table.to_csv(table)
+    end
+  end
+
+  describe "POST #import" do
+    let(:table_name) { "import_test" }
+    let(:file) { fixture_file_upload "files/#{table_name}.csv", 'text/csv'}
+    it "imports a table from CSV" do
+      post :import, file: file 
+
+      response.should redirect_to(root_path)
+
+      # A notice flash means the import was successful
+      flash[:notice].should_not be_nil
+
+      # Check that the newly created table exists and contains the
+      # correct data
+      table = Table.where(name: table_name)[0]
+      table.headers.should eq ['field1', 'field2', 'field3']
+      table.rows.should eq [['1', '2', '3'], ['4', '5', '6']]
     end
   end
 end

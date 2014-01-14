@@ -1,4 +1,11 @@
 %h1 Tables
+-if flash[:notice]
+  %p=flash[:notice]
+-if flash[:alert]
+  %p=flash[:alert]
 %ul
   -@tables.each do |t|
     %li=link_to t.name, table_path(t)
+=form_tag import_tables_path, multipart: true do
+  =file_field_tag :file
+  =submit_tag "Import"

@@ -11,4 +11,20 @@ class Table < ActiveRecord::Base
       end
     end
   end
+
+  def Table.import(file)
+    table = new
+    table.name = File.basename(file.original_filename, File.extname(file.original_filename))
+    Table.parse_csv(table, file)
+    table.save
+  end
+
+  private
+
+  def Table.parse_csv(table, file)
+    data = []
+    CSV.foreach(file.path) {|row| data << row.to_a}
+    table.headers = data.first
+    table.rows = data[1..-1]
+  end
 end
