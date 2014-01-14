@@ -1,1 +1,4 @@
 %h1 Tables
+%ul
+  -@tables.each do |t|
+    %li=link_to t.name, table_path(t)
